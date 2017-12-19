@@ -1,3 +1,7 @@
 # DatabasesFinal415
 
-API_KEY = lIXTcIWjRiNoQ1cB2AtdsP2GGue5kb442vMVMAgp
+To setup the environment run:
+
+```
+pip install -r requirements.txt
+```
