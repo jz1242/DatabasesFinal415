@@ -8,7 +8,7 @@ app = Flask(__name__)
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+config.get('database', 'db_user')+':'+ config.get('database', 'db_password')+'@localhost/hw3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+config.get('database', 'db_user')+':'+ config.get('database', 'db_password')+'@localhost/' + config.get('database', 'db_dbname')
 db = SQLAlchemy(app)
 
 from views import *
