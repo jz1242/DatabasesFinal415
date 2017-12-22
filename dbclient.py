@@ -19,7 +19,6 @@ def get_food_groups():
 
     return column_names, rows
 
-
 def get_all_foods():
     cursor = cnx.cursor()
     cursor.execute('Select Long_Desc, Shrt_Desc From FOOD_DESCRIPTION')

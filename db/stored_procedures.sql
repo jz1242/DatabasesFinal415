@@ -71,7 +71,7 @@ DELIMITER ;
 
 # Look up related foods by keyword.
 DELIMITER //
-DROP PROCEDURE IF EXISTS GetSimilarFood//
+DROP PROCEDURE IF EXISTS LookupSimilarFood//
 CREATE PROCEDURE LookupSimilarFood
     (IN input TEXT)
         BEGIN
