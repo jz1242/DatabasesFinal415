@@ -87,14 +87,11 @@ DROP PROCEDURE IF EXISTS LookupFoodNutrients//
 CREATE PROCEDURE LookupFoodNutrients
     (IN input TEXT)
         BEGIN
-            SELECT DISTINCT NBD_No, Long_Desc,
-              Nuts_Val, Std_Error,
-              NutrDesc, Units
-            FROM
-                NUTRIENT_DEFINITION NATURAL JOIN NUTRIENT_DATA NATURAL JOIN FOOD_DESCRIPTION AS Nutrient
-            WHERE Nutrient.NBD_No IN (
-                SELECT FOOD_DESCRIPTION.NBD_No
-                FROM FOOD_DESCRIPTION NATURAL JOIN FOOD_GROUP_DESCRIPTION
+            SELECT DISTINCT NBD_No, Long_Desc,Nuts_Val, Std_Error, NutrDesc, Units
+FROM (FOOD_DESCRIPTION AS N NATURAL JOIN NUTRIENT_DEFINITION NATURAL JOIN NUTRIENT_DATA)
+WHERE N.NBD_No IN (
+                SELECT F.NBD_No
+                FROM FOOD_DESCRIPTION AS F
                 WHERE Long_Desc LIKE CONCAT('%',input,'%'));
         END //
 DELIMITER ;

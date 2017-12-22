@@ -11,7 +11,7 @@ setupdb:
 config:
 	echo "[database]\ndb_user=$(user)\ndb_password=$(pass)\ndb_dbname=$(db)" | tee config.ini
 
-install: 
+install:
 	pip install -r requirements.txt
 
 start:
