@@ -1,7 +1,7 @@
 #Get all company products
 DELIMITER //
-DROP PROCEDURE IF EXISTS ShowCompanyProducts//
-CREATE PROCEDURE ShowCompanyProducts
+DROP PROCEDURE IF EXISTS GetCompanyProducts//
+CREATE PROCEDURE GetCompanyProducts
     (IN input TEXT)
         BEGIN
             SELECT Long_Desc
@@ -36,8 +36,8 @@ DELIMITER ;*/
 
 # Get entry based off long desc
 DELIMITER //
-DROP PROCEDURE IF EXISTS FoodDescLongDesc//
-CREATE PROCEDURE FoodDescLongDesc
+DROP PROCEDURE IF EXISTS GetFoodLongDesc//
+CREATE PROCEDURE GetFoodLongDesc
     (IN input varchar(20))
         BEGIN
             SELECT *
@@ -59,8 +59,8 @@ DELIMITER ;*/
 
 # Look up food groups by keyword.
 DELIMITER //
-DROP PROCEDURE IF EXISTS LookupFoodGroup//
-CREATE PROCEDURE LookupFoodGroup
+DROP PROCEDURE IF EXISTS GetFoodGroupLikeDesc//
+CREATE PROCEDURE GetFoodGroupLikeDesc
     (IN input TEXT)
         BEGIN
             SELECT DISTINCT FdGrp_Desc
@@ -71,7 +71,7 @@ DELIMITER ;
 
 # Look up related foods by keyword.
 DELIMITER //
-DROP PROCEDURE IF EXISTS LookupSimilarFood//
+DROP PROCEDURE IF EXISTS GetSimilarFood//
 CREATE PROCEDURE LookupSimilarFood
     (IN input TEXT)
         BEGIN
