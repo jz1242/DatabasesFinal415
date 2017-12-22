@@ -4,7 +4,8 @@ from flask import jsonify
 import configparser
 
 app = Flask(__name__)
-
+app.secret_key = "12345"
+app.static_folder = 'static'
 config = configparser.ConfigParser()
 config.read('config.ini')
 
