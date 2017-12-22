@@ -5,15 +5,11 @@
     <head>
         <title>Nutrition App</title>
      
-     
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-     
         <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-     
-     
     </head>
-     
     <body>
      
         <div class="container">
@@ -47,20 +43,36 @@
             </div>
      
             <div class="card">
-                <div class="card-body">
-                    <table border="1" cellpadding="5" cellspacing="5">
-                        {% for row in data[1:] %}
-                                {% for d in row %}
-                                    <tr>
-                                        {{d}}
-                                    </tr>
-                                {% endfor %}
-                        {% endfor %}
-                    </table>
-                </div>
-     
+                <div id="table"/>
+                <script>
+                    var data = null;
+                    $.ajax({
+                        url: "/getFoods",
+                        cache: false,
+                        success: function(response) {
+                            response = JSON.parse(response);
+                            $("#table").append(createTableFromJson(response));
+                        }
+                    });
+
+                    function createTableFromJson(json) {
+                        var table = "<table class=\"table\"><thead class=\"thead-dark\"><tr>";
+                        $.each(json[0], function(key, value) {
+                            table += "<th>" + key + "</th>";
+                        });
+                        table += "</tr>";
+                        $.each(json, function(key, value) {
+                            table += "<tr>";
+                            $.each(value, function(k, v) {
+                                table += "<td>" + v + "</td>";
+                            });
+                            table += "</tr></thead>";
+                        });
+                        table += "</table>";
+                        return table;
+                    }
+                </script>
             </div>
-     
         </div>
     </body>
      

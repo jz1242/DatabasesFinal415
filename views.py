@@ -18,14 +18,17 @@ def signup():
 def home():
     return render_template('home.html')
 
+
 @app.route("/search", methods=['GET'])
 def search():
-    #return render_template('home.html')
+    return render_template('retQuery.html')
+
+
+@app.route("/getFoods", methods=['GET'])
+def get_foods():
     s = dbclient.get_food_groups()
-    #return json.dumps(s)
-    return render_template("retQuery.html", data=s)
-    #return render_template('test.html', lel = tweets)
-    #return render_template('test.html', lel = jsonify(dbclient.get_food_groups()))
+    return json.dumps(s)
+
 
 @app.route("/added", methods=['POST'])
 def added():
