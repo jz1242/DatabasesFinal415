@@ -1,5 +1,6 @@
 import mysql.connector
 import configparser
+import json
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -17,7 +18,8 @@ def get_food_groups():
     rows = cursor.fetchall()
     cursor.close()
 
-    return column_names, rows
+    return to_dicts(column_names, rows)
+
 
 def get_all_foods():
     cursor = cnx.cursor()
@@ -26,7 +28,8 @@ def get_all_foods():
     rows = cursor.fetchall()
     cursor.close()
 
-    return column_names, rows
+    return to_dicts(column_names, rows)
+
 
 def get_company_products(input):
     cursor = cnx.cursor()
@@ -36,7 +39,7 @@ def get_company_products(input):
     rows = cursor.fetchall()
     cursor.close()
 
-    return column_names, rows
+    return to_dicts(column_names, rows)
 
 
 def get_food_group_desc_like(input):
@@ -47,7 +50,8 @@ def get_food_group_desc_like(input):
     rows = cursor.fetchall()
     cursor.close()
 
-    return column_names, rows
+    return to_dicts(column_names, rows)
+
 
 def get_food_long_des(input):
     cursor = cnx.cursor()
@@ -57,7 +61,8 @@ def get_food_long_des(input):
     rows = cursor.fetchall()
     cursor.close()
 
-    return column_names, rows
+    return to_dicts(column_names, rows)
+
 
 def get_food_group_like_desc(input):
     cursor = cnx.cursor()
@@ -67,7 +72,8 @@ def get_food_group_like_desc(input):
     rows = cursor.fetchall()
     cursor.close()
 
-    return column_names, rows
+    return to_dicts(column_names, rows)
+
 
 def lookup_similar_food(input):
     cursor = cnx.cursor()
@@ -77,7 +83,8 @@ def lookup_similar_food(input):
     rows = cursor.fetchall()
     cursor.close()
 
-    return column_names, rows
+    return to_dicts(column_names, rows)
+
 
 def lookup_food_nutrients(input):
     cursor = cnx.cursor()
@@ -87,4 +94,14 @@ def lookup_food_nutrients(input):
     rows = cursor.fetchall()
     cursor.close()
 
-    return column_names, rows
+    return to_dicts(column_names, rows)
+
+
+def to_dicts(columns, rows):
+    dicts = []
+    for r in rows:
+        d = dict()
+        for i in xrange(len(r)):
+            d.update({columns[i]: r[i]})
+        dicts.append(d)
+    return dicts
