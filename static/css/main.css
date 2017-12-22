@@ -1,9 +1,12 @@
-body{
-    background-color: #FFF;
-}
+
 .jumbotron {
-    posistion:relative;
+    position:relative;
     z-index: 2;
-    box-shadow: 5px 12px 20px#0FC488;
+    box-shadow: 5px 12px 20px#222;
     background-color:#E2E2E2 !important;
+}
+body{
+    background-image: url("burger.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

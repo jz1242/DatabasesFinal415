@@ -7,7 +7,7 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <link href="../static/signup.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     
   </head>
  
@@ -17,7 +17,7 @@
       <div class="header">
           {% if session['logged_in'] %}
           <nav>
-              <ul class="nav nav-tabs">
+              <ul class="nav nav-pills">
                   <li class="nav-item">
                     <a class="nav-link active" href="/">Home</a>
                   </li>
@@ -30,10 +30,10 @@
           <nav>
               <ul class="nav nav-tabs">
                   <li class="nav-item">
-                    <a class="nav-link active" href="/">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/signup">Sign Up</a>
+                      <a class="nav-link active" href="/signup">Sign Up</a>
                   </li>                        
                   <li class="nav-item">
                     <a class="nav-link" href="/signin">Sign In</a>
@@ -41,14 +41,14 @@
               </ul>
           </nav>
           {% endif %}
-        <h3 class="text-muted">Nutrition Up</h3>
+        <h3>Nutrition Up</h3>
       </div>
  
       <div class="jumbotron">
         <h1>Let's Get Started!</h1>
         <form class="form-signin" action="{{ url_for('added')}}" method="POST">
-          <label for="inputName" class="sr-only">Name</label>
-          <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+          <label for="inputName" class="sr-only">Username</label>
+          <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Username" required autofocus>
           <label for="inputEmail" class="sr-only">Email address</label>
           <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
           <label for="inputPassword" class="sr-only">Password</label>
