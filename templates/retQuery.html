@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+     
+    <head>
+        <title>Nutrition App</title>
+     
+     
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+     
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+     
+     
+    </head>
+     
+    <body>
+     
+        <div class="container">
+            <div class="header">
+                {% if session['logged_in'] %}
+                <nav>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="/home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/logout">Log Out</a>
+                        </li>
+                    </ul>
+                </nav>
+                {% else %}
+                <nav>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signup">Sign Up</a>
+                        </li>                        
+                        <li class="nav-item">
+                          <a class="nav-link" href="/signin">Sign In</a>
+                        </li>
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
+     
+            <div class="card">
+                <div class="card-body">
+                    <table border="1" cellpadding="5" cellspacing="5">
+                        {% for row in data[1:] %}
+                                {% for d in row %}
+                                    <tr>
+                                        {{d}}
+                                    </tr>
+                                {% endfor %}
+                        {% endfor %}
+                    </table>
+                </div>
+     
+            </div>
+     
+        </div>
+    </body>
+     
+</html>
