@@ -98,3 +98,5 @@ CREATE PROCEDURE LookupFoodNutrients
                 WHERE Long_Desc LIKE CONCAT('%',input,'%'));
         END //
 DELIMITER ;
+
+# Look up average thing for

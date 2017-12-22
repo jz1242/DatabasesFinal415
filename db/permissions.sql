@@ -1,22 +1,17 @@
-%GRANT SELECT ON FOOD_DESCRIPTION TO ENROLLED_;
+#GRANT SELECT ON FOOD_DESCRIPTION TO ENROLLED_;
 
-%GRANT SELECT ON NUTRIENT_DATA TO PUBLIC;
+#GRANT SELECT ON NUTRIENT_DATA TO PUBLIC;
 
-%maybe for non-registered users
-CREATE ROLE BasicUser;
-GRANT SELECT
-ON FOOD_DESCRIPTION
-TO BasicUser;
+#maybe for non-registered users
 
-
-%for logged in users
-CREATE ROLE RegisterUser;
+#for logged in users
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
 GRANT SELECT
 ON FOOD_DESCRIPTION
 TO RegisterUser;
 
-%for administrators and any other people who have to maintain the database
-CREATE ROLE Administrator;
-GRANT SELECT, UPDATE, INSERT, DELETE
-ON DATABASE project1
-TO Administrator;
+#for administrators and any other people who have to maintain the database
+CREATE User 'Administrator'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES
+ON project1.*
+TO 'Administrator'@'localhost';
