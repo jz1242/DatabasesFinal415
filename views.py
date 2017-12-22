@@ -10,6 +10,16 @@ def index():
 def signup():
     return render_template('signup.html')
 
+
+@app.route("/home")
+def home():
+    return render_template('home.html')
+
+@app.route("/search", methods=['POST'])
+def search():
+    #return render_template('home.html')
+    return "here"
+
 @app.route("/added", methods=['POST'])
 def added():
     user = User(name=request.form['inputName'], email=request.form['inputEmail'], password=request.form['inputPassword'])
@@ -26,11 +36,11 @@ def login():
     if(db.session.query(User).filter_by(name=request.form['username'], password=request.form['password']).first() == None):
         return redirect(url_for('signin'))
     session['logged_in'] = True
-    return redirect(url_for('index'))
-'''
+    return redirect(url_for('home'))
+
 @app.route("/logout")
 def logout():
     if(session.get('logged_in') == True):
         session['logged_in'] = False
     return redirect(url_for('index'))
-'''
+
