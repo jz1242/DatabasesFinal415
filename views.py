@@ -1,6 +1,9 @@
 from healthApp import app, db
 from models import User
 from flask import Flask, render_template, request, redirect, url_for, session
+import dbclient
+from flask import jsonify
+import json
 
 @app.route("/")
 def index():
@@ -15,10 +18,14 @@ def signup():
 def home():
     return render_template('home.html')
 
-@app.route("/search", methods=['POST'])
+@app.route("/search", methods=['GET'])
 def search():
     #return render_template('home.html')
-    return "here"
+    s = dbclient.get_food_groups()
+    #return json.dumps(s)
+    return render_template("retQuery.html", data=s)
+    #return render_template('test.html', lel = tweets)
+    #return render_template('test.html', lel = jsonify(dbclient.get_food_groups()))
 
 @app.route("/added", methods=['POST'])
 def added():
