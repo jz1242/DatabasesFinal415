@@ -1,6 +1,6 @@
 from healthApp import app, db
 from models import User
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 
 @app.route("/")
 def index():
@@ -17,3 +17,20 @@ def added():
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route("/signin")
+def signin():
+    return render_template('signin.html')
+
+@app.route("/login", methods=['POST'])
+def login():
+    if(db.session.query(User).filter_by(name=request.form['username'], password=request.form['password']).first() == None):
+        return redirect(url_for('signin'))
+    session['logged_in'] = True
+    return redirect(url_for('index'))
+'''
+@app.route("/logout")
+def logout():
+    if(session.get('logged_in') == True):
+        session['logged_in'] = False
+    return redirect(url_for('index'))
+'''

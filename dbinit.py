@@ -66,8 +66,8 @@ def parse_row_to_sql(row):
                 row[i] = '0'
             else:
                 data = data.strip().strip('~')
-                data = data.replace('\'', '\\\'')
-                data = data.replace('\"', '\\\"')
+                data = data.replace('\'', '\'\'')
+                data = data.replace('\"', '\"\"')
                 row[i] = '\'' + data + '\''
     return row
 
